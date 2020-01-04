@@ -16,10 +16,13 @@ var (
 
 func main() {
 	flag.Parse()
-	fmt.Printf("It listens to %s\n", *listenAdrs)
 
 	http.HandleFunc("/", index)
-	http.ListenAndServe(*listenAdrs, nil)
+	e := http.ListenAndServe(*listenAdrs, nil)
+	if e != nil {
+		panic("Couldn't start the server")
+	}
+	fmt.Printf("It listens to %s\n", *listenAdrs)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
