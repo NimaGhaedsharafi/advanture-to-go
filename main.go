@@ -20,7 +20,7 @@ func main() {
 	http.HandleFunc("/", index)
 	e := http.ListenAndServe(*listenAdrs, nil)
 	if e != nil {
-		panic("Couldn't start the server")
+		panic("Couldn't start the server Error: " + e.Error())
 	}
 	fmt.Printf("It listens to %s\n", *listenAdrs)
 }
